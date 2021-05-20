@@ -1,2 +1,3 @@
+include ':agent'
 include ':app'
 rootProject.name = "JupitaAgentExample"
