@@ -1,4 +1,4 @@
-package com.ihfazh.jupitaagentexample
+package io.jupita.demo
 
 import org.junit.Test
 
