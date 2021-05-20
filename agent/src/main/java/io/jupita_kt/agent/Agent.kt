@@ -64,6 +64,42 @@ class Agent(
         requestQueue.add(request)
     }
 
+    private fun feedRequestAPI(feedListener: Agent.FeedListener?){
+        val jsonData = JSONObject(
+            mapOf(
+                "token" to apiKey,
+                "agent id" to agentId
+            )
+        )
+
+        val request = JsonObjectRequest(
+            Constants.feedEndpoint,
+            jsonData,
+            { it?.let { feedListener?.onSuccess(it) }}
+        ) {
+            val body: String
+            var jsonResponse = JSONObject()
+            val statusCode = it.networkResponse.statusCode.toString()
+
+            if (it.networkResponse.data != null){
+                try {
+                    body = it.networkResponse.data.decodeToString()
+                    jsonResponse = JSONObject(body)
+                } catch (e: UnsupportedEncodingException){
+                    Log.e(TAG, e.message, e)
+                } catch (e: JSONException){
+                    Log.e(TAG, e.message, e)
+                }
+            }
+
+            feedListener?.onError(statusCode, jsonResponse)
+        }
+
+        requestQueue.add(request)
+
+    }
+
+
     fun dump(text: String, clientId: String, type: Int, isCall: Boolean, dumpListener: DumpListener){
         dumpRequestAPI(text, clientId, type, isCall, dumpListener)
     }
@@ -80,6 +116,10 @@ class Agent(
         dumpRequestAPI(text, clientId, type, false, dumpListener)
     }
 
+    fun feed(feedListener: FeedListener){
+        feedRequestAPI(feedListener)
+    }
+
     // builder pattern
     class Builder(private val context: Context, private val apiKey: String){
         var agentId: String? = null
@@ -92,6 +132,11 @@ class Agent(
     // listeners
     interface DumpListener{
         fun onSuccess(msg: String, rating: Double)
+        fun onError(statusCode: String, response: JSONObject)
+    }
+
+    interface FeedListener {
+        fun onSuccess(week: JSONObject)
         fun onError(statusCode: String, response: JSONObject)
     }
 

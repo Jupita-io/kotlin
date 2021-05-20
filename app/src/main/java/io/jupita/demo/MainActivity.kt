@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
                 agentId = "demo"
             }.build()
 
+            Log.d(TAG, "Start Dump Request")
             agent.dump(
                 "Hello",
                 "0",
@@ -38,6 +39,17 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             )
+
+            Log.d(TAG, "Start Feed Request")
+            agent.feed(object : Agent.FeedListener {
+                override fun onSuccess(week: JSONObject) {
+                    Log.d(TAG, "onSuccess: week -> $week")
+                }
+
+                override fun onError(statusCode: String, response: JSONObject) {
+                    Log.d(TAG, "onError: message -> $response")
+                }
+            })
         } catch (e: Exception){
             Log.e(TAG, "Error Occured")
             e.printStackTrace()
