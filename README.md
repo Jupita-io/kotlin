@@ -1,6 +1,6 @@
 [![](https://jitpack.io/v/Jupita-io/Jupita-Agent-Android-Kotlin.svg)](https://jitpack.io/#Jupita-io/Jupita-Agent-Android-Kotlin)
 
-# Jupita AI Kotlin SDK
+# Jupita Agent Kotlin SDK
 
 This SDK is developed for Android using Kotlin and utilizes Google’s Volley library to create the API calls required. Currently, the Android SDK fully supports the 3 APIs available for Jupita Agent. All API calls are made asynchronously, thus there are event listeners available to handle the API results.
 APIs
