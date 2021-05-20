@@ -6,6 +6,7 @@ import io.jupita_kt.network.Requestor
 import io.jupita_kt.network.listeners.DumpListener
 import io.jupita_kt.network.listeners.FeedListener
 import io.jupita_kt.network.listeners.RatingListener
+import java.lang.IllegalArgumentException
 
 class Agent(private val requestor: IRequest) {
 

@@ -7,12 +7,15 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import io.jupita_kt.agent.Agent
 import io.jupita_kt.agent.Constants
+import io.jupita_kt.agent.MessageType
+import io.jupita_kt.agent.ModelName
 import io.jupita_kt.network.listeners.DumpListener
 import io.jupita_kt.network.listeners.FeedListener
 import io.jupita_kt.network.listeners.RatingListener
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.UnsupportedEncodingException
+import java.lang.IllegalArgumentException
 
 class Requestor(context: Context, private val apiKey: String, private val agentId: String): IRequest {
     companion object {
@@ -21,6 +24,10 @@ class Requestor(context: Context, private val apiKey: String, private val agentI
     private val requestQueue = Volley.newRequestQueue(context)
 
     override fun dump(text: String, clientId: String, type: Int, isCall: Boolean, dumpListener: DumpListener?){
+        if (type !in arrayOf(MessageType.Agent, MessageType.Client)){
+            throw IllegalArgumentException("Use either `MessageType.Agent` or `MessageType.Client` type")
+        }
+
         val jsonData = JSONObject(mapOf(
             "token" to apiKey,
             "agent id" to agentId,
@@ -74,6 +81,10 @@ class Requestor(context: Context, private val apiKey: String, private val agentI
     }
 
     override fun rating(model: String, ratingListener: RatingListener?){
+        if (model != ModelName.JUPITAV1){
+            throw IllegalArgumentException("Only Jupita v1 is supported")
+        }
+
         val jsonData = JSONObject(
             mapOf(
                 "token" to apiKey,
