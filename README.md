@@ -137,10 +137,12 @@ The built agent can now be used to call dump, rating and feed methods asynchrono
 
 ### `dump` method definitions
 
+```
 fun dump(text: String, clientId: String)
 fun dump(text: String, clientId: String, dumpListener: DumpListener)
 fun dump(text: String, clientId: String, type: Int, dumpListener: DumpListener)
 fun dump(text: String, clientId: String, type: Int, isCall: Boolean, dumpListener: DumpListener)
+```
 
 If the values of `type` and `isCall` are not provided by default the values are considered as `MessageType.Agent` and `false`.
 Thus `text` and the `clientId` are essential when creating a `dump` request.
@@ -150,8 +152,10 @@ The onSuccess event returns the success message as well as the utterance rating 
 
 
 ### `rating` method definitions
+```
 fun rating(ratingListener: RatingListener)
 fun rating(modelName: String, ratingListener: RatingListener)
+```
 
 The second rating definition is created for future use when there will be multiple models to choose from.
 At the moment only 1 model (JupitaV1) is supported. To avoid illegal argument error use `ModelName.JUPITAV1` for the modelName.
@@ -160,7 +164,9 @@ The onSuccess event returns the rating as a double.
 
 
 ### `feed` method definitions
+```
 fun feed(feedListener: FeedListener)
+```
 
 FeedListener is an interface which needs to be implemented to listen to results of the feed call.
 The onSuccess event returns the feed for the whole week as a JSONObject.
