@@ -45,7 +45,7 @@ Call the dump API as a message from Agent by specifying the message and clientId
 
 ```
 agent.dump( "Hello",
-            "0",
+            "3",
             MessageType.Agent,
             false,
             object : DumpListener {
@@ -65,7 +65,7 @@ Similarly, call the dump API whenever client responds back to the same agent by 
 ```
 agent.dump(
                 "Hello",
-                "0",
+                "3",
                 MessageType.Client,
                 false,
                 object : DumpListener {
