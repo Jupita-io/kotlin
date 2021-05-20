@@ -1,9 +1,8 @@
 package io.jupita_kt.agent
 
 object Constants {
-    val name = "JUPITA"
-    val url = "https://api.jupita.io/v1"
-    val dumpEndpoint = "$url/dump"
-    val feedEndpoint = "$url/feed"
-    val ratingEndpoint = "$url/rating"
+    private const val url = "https://api.jupita.io/v1"
+    const val dumpEndpoint = "$url/dump"
+    const val feedEndpoint = "$url/feed"
+    const val ratingEndpoint = "$url/rating"
 }

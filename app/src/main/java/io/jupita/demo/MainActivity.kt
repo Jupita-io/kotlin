@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import io.jupita_kt.agent.Agent
 import io.jupita_kt.agent.MessageType
+import io.jupita_kt.network.listeners.DumpListener
+import io.jupita_kt.network.listeners.FeedListener
+import io.jupita_kt.network.listeners.RatingListener
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
@@ -18,9 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         try {
-            val agent = Agent.Builder(this, token).apply {
-                agentId = "demo"
-            }.build()
+            val agent = Agent.Builder(this, token, "demo").build()
 
             Log.d(TAG, "Start Dump Request")
             agent.dump(
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                 "0",
                 MessageType.Agent,
                 false,
-                object : Agent.DumpListener {
+                object : DumpListener {
                     override fun onSuccess(msg: String, rating: Double) {
                         Log.d(TAG, "onSuccess: message -> $msg")
                         Log.d(TAG, "onSuccess: rating -> $rating")
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             )
 
             Log.d(TAG, "Start Feed Request")
-            agent.feed(object : Agent.FeedListener {
+            agent.feed(object : FeedListener {
                 override fun onSuccess(week: JSONObject) {
                     Log.d(TAG, "onSuccess: week -> $week")
                 }
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             })
 
             Log.d(TAG, "Start Rating Request")
-            agent.rating(object : Agent.RatingListener {
+            agent.rating(object : RatingListener {
                 override fun onSuccess(rating: Double) {
                     Log.d(TAG, "onSuccess: rating -> $rating")
                 }
@@ -62,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         } catch (e: Exception){
-            Log.e(TAG, "Error Occured")
+            Log.e(TAG, "Error Occurred")
             e.printStackTrace()
         }
     }
