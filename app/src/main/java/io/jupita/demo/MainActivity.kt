@@ -50,6 +50,17 @@ class MainActivity : AppCompatActivity() {
                     Log.d(TAG, "onError: message -> $response")
                 }
             })
+
+            Log.d(TAG, "Start Rating Request")
+            agent.rating(object : Agent.RatingListener {
+                override fun onSuccess(rating: Double) {
+                    Log.d(TAG, "onSuccess: rating -> $rating")
+                }
+
+                override fun onError(statusCode: String, response: JSONObject) {
+                    Log.d(TAG, "onError: message -> $response")
+                }
+            })
         } catch (e: Exception){
             Log.e(TAG, "Error Occured")
             e.printStackTrace()

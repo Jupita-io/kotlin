@@ -64,7 +64,7 @@ class Agent(
         requestQueue.add(request)
     }
 
-    private fun feedRequestAPI(feedListener: Agent.FeedListener?){
+    private fun feedRequestAPI(feedListener: FeedListener?){
         val jsonData = JSONObject(
             mapOf(
                 "token" to apiKey,
@@ -99,6 +99,42 @@ class Agent(
 
     }
 
+    private fun ratingRequestAPI(model: String, ratingListener: RatingListener?){
+        val jsonData = JSONObject(
+            mapOf(
+                "token" to apiKey,
+                "agent id" to agentId,
+                "model" to model
+            )
+        )
+
+        val request = JsonObjectRequest(
+            Constants.ratingEndpoint,
+            jsonData,
+            {ratingListener?.onSuccess(it.getDouble("rating"))}
+        ) {
+            val body: String
+            var jsonResponse = JSONObject()
+            val statusCode = it.networkResponse.statusCode.toString()
+
+            if (it.networkResponse.data != null){
+                try {
+                    body = it.networkResponse.data.decodeToString()
+                    jsonResponse = JSONObject(body)
+                } catch (e: UnsupportedEncodingException){
+                    Log.e(TAG, e.message, e)
+                } catch (e: JSONException){
+                    Log.e(TAG, e.message, e)
+                }
+            }
+
+            ratingListener?.onError(statusCode, jsonResponse)
+        }
+
+        requestQueue.add(request)
+    }
+
+
 
     fun dump(text: String, clientId: String, type: Int, isCall: Boolean, dumpListener: DumpListener){
         dumpRequestAPI(text, clientId, type, isCall, dumpListener)
@@ -120,6 +156,14 @@ class Agent(
         feedRequestAPI(feedListener)
     }
 
+    fun rating(ratingListener: RatingListener){
+        ratingRequestAPI(ModelName.JUPITAV1, ratingListener)
+    }
+
+    fun rating(modelName: String, ratingListener: RatingListener){
+        ratingRequestAPI(modelName, ratingListener)
+    }
+
     // builder pattern
     class Builder(private val context: Context, private val apiKey: String){
         var agentId: String? = null
@@ -137,6 +181,10 @@ class Agent(
 
     interface FeedListener {
         fun onSuccess(week: JSONObject)
+        fun onError(statusCode: String, response: JSONObject)
+    }
+    interface RatingListener {
+        fun onSuccess(rating: Double)
         fun onError(statusCode: String, response: JSONObject)
     }
 
