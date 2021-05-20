@@ -43,7 +43,7 @@ class Agent(
                 }
             }
         ) {
-            var body = ""
+            val body: String
             var jsonResponse = JSONObject()
             val statusCode = it.networkResponse.statusCode.toString()
 
@@ -66,6 +66,18 @@ class Agent(
 
     fun dump(text: String, clientId: String, type: Int, isCall: Boolean, dumpListener: DumpListener){
         dumpRequestAPI(text, clientId, type, isCall, dumpListener)
+    }
+
+    fun dump(text: String, clientId: String){
+        dumpRequestAPI(text, clientId, MessageType.Agent, false, null)
+    }
+
+    fun dump(text: String, clientId: String, dumpListener: DumpListener){
+        dumpRequestAPI(text, clientId, MessageType.Agent, false, dumpListener)
+    }
+
+    fun dump(text: String, clientId: String, type: Int, dumpListener: DumpListener){
+        dumpRequestAPI(text, clientId, type, false, dumpListener)
     }
 
     // builder pattern
