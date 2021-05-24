@@ -2,10 +2,13 @@
 
 # Jupita Agent Kotlin SDK
 
-This SDK is developed for Android using Kotlin and utilizes Google’s Volley library to create the API calls required. Currently, the Android SDK fully supports the 3 APIs available for Jupita Agent. All API calls are made asynchronously, thus there are event listeners available to handle the API results.
-APIs
+This SDK is developed for Android using Kotlin and utilizes Google’s Volley library to create the API calls required.
+Currently, the Android SDK fully supports the 3 APIs available for Jupita Agent.
+All API calls are made asynchronously, thus there are event listeners available to handle the API results.
 
-There are 3 APIs within the Juptia Agent product – ‘dump’ ‘rating’ & ‘feed’:
+## APIs
+
+There are 3 APIs within the Juptia Agent product – `dump` `rating` & `feed`:
 - Dump allows you to send the utterances you wish to send.
 - Rating allows you to retrieve the rating for the agent in question.
 - Feed provides you with some basic rating analytics.
