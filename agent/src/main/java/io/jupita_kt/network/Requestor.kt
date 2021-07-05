@@ -30,9 +30,9 @@ class Requestor(context: Context, private val apiKey: String, private val agentI
 
         val jsonData = JSONObject(mapOf(
             "token" to apiKey,
-            "agent id" to agentId,
-            "client id" to clientId,
-            "message type" to type,
+            "agent_id" to agentId,
+            "client_id" to clientId,
+            "message_type" to type,
             "text" to text,
             "isCall" to isCall
         ))
@@ -63,7 +63,7 @@ class Requestor(context: Context, private val apiKey: String, private val agentI
         val jsonData = JSONObject(
             mapOf(
                 "token" to apiKey,
-                "agent id" to agentId
+                "agent_id" to agentId
             )
         )
 
@@ -88,7 +88,7 @@ class Requestor(context: Context, private val apiKey: String, private val agentI
         val jsonData = JSONObject(
             mapOf(
                 "token" to apiKey,
-                "agent id" to agentId,
+                "agent_id" to agentId,
                 "model" to model
             )
         )
