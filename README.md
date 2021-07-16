@@ -40,16 +40,16 @@ dependencies {
 ```
 
 ### Step 3
-Build Jupita Agent - '2' has been used to represent the agentId;
+Build Jupita Agent - '2' has been used to represent the agent_id;
 
 ```
 val token = "your-token"
-val agentId = "2"
-val agent = Agent.Builder(applicationContext, token, agentId).build()
+val agent_id = "2"
+val agent = Agent.Builder(applicationContext, token, agent_id).build()
 ```
 
 ### Step 4
-Call the dump API as a message from Agent by specifying the message and clientId – represented as '3' below;
+Call the dump API as a message from Agent by specifying the message and client_id – represented as '3' below;
 
 ```
 agent.dump( "Hello",
@@ -135,8 +135,8 @@ The Jupita Agent Kotlin version cannot be constructed directly using the public 
 
 ```
 val token = "your-token"
-val agentId = "2"
-val agent = Agent.Builder(applicationContext, token, agentId).build()
+val agent_id = "2"
+val agent = Agent.Builder(applicationContext, token, agent_id).build()
 ```
 
 The builder constructs with the context of the application, token, and the agentID. This is needed for building the volley request queue.
@@ -146,14 +146,14 @@ The built agent can now be used to call dump, rating and feed methods asynchrono
 ### `dump` method definitions
 
 ```
-fun dump(text: String, clientId: String)
-fun dump(text: String, clientId: String, dumpListener: DumpListener)
-fun dump(text: String, clientId: String, type: Int, dumpListener: DumpListener)
-fun dump(text: String, clientId: String, type: Int, isCall: Boolean, dumpListener: DumpListener)
+fun dump(text: String, client_id: String)
+fun dump(text: String, client_id: String, dumpListener: DumpListener)
+fun dump(text: String, client_id: String, type: Int, dumpListener: DumpListener)
+fun dump(text: String, client_id: String, type: Int, isCall: Boolean, dumpListener: DumpListener)
 ```
 
 If the values of `type` and `isCall` are not provided by default the values are considered as `MessageType.Agent` and `false`.
-Thus `text` and the `clientId` are essential when creating a `dump` request.
+Thus `text` and the `client_id` are essential when creating a `dump` request.
 To avoid illegal argument error use `MessageType.Agent` or `MessageType.Client` for type.
 `DumpListener` is an interface which needs to be implemented to listen to results of the dump call.
 The onSuccess event returns the success message as well as the utterance rating as double.
