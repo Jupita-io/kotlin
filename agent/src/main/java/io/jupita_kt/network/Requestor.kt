@@ -5,7 +5,6 @@ import android.util.Log
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import io.jupita_kt.agent.Agent
 import io.jupita_kt.agent.Constants
 import io.jupita_kt.agent.MessageType
 import io.jupita_kt.agent.ModelName
@@ -17,21 +16,21 @@ import org.json.JSONObject
 import java.io.UnsupportedEncodingException
 import java.lang.IllegalArgumentException
 
-class Requestor(context: Context, private val apiKey: String, private val agentId: String): IRequest {
+class Requestor(context: Context, private val apiKey: String, private val agent_id: String): IRequest {
     companion object {
        const val TAG = "REQUESTOR"
     }
     private val requestQueue = Volley.newRequestQueue(context)
 
-    override fun dump(text: String, clientId: String, type: Int, isCall: Boolean, dumpListener: DumpListener?){
+    override fun dump(text: String, client_id: String, type: Int, isCall: Boolean, dumpListener: DumpListener?){
         if (type !in arrayOf(MessageType.Agent, MessageType.Client)){
             throw IllegalArgumentException("Use either `MessageType.Agent` or `MessageType.Client` type")
         }
 
         val jsonData = JSONObject(mapOf(
             "token" to apiKey,
-            "agent_id" to agentId,
-            "client_id" to clientId,
+            "agent_id" to agent_id,
+            "client_id" to client_id,
             "message_type" to type,
             "text" to text,
             "isCall" to isCall
@@ -63,7 +62,7 @@ class Requestor(context: Context, private val apiKey: String, private val agentI
         val jsonData = JSONObject(
             mapOf(
                 "token" to apiKey,
-                "agent_id" to agentId
+                "agent_id" to agent_id
             )
         )
 
@@ -88,7 +87,7 @@ class Requestor(context: Context, private val apiKey: String, private val agentI
         val jsonData = JSONObject(
             mapOf(
                 "token" to apiKey,
-                "agent_id" to agentId,
+                "agent_id" to agent_id,
                 "model" to model
             )
         )

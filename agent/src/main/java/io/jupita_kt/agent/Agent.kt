@@ -6,31 +6,30 @@ import io.jupita_kt.network.Requestor
 import io.jupita_kt.network.listeners.DumpListener
 import io.jupita_kt.network.listeners.FeedListener
 import io.jupita_kt.network.listeners.RatingListener
-import java.lang.IllegalArgumentException
 
 class Agent(private val requestor: IRequest) {
 
 
     fun dump(
         text: String,
-        clientId: String,
+        client_id: String,
         type: Int,
         isCall: Boolean,
         dumpListener: DumpListener
     ) {
-        requestor.dump(text, clientId, type, isCall, dumpListener)
+        requestor.dump(text, client_id, type, isCall, dumpListener)
     }
 
-    fun dump(text: String, clientId: String) {
-        requestor.dump(text, clientId, MessageType.Agent, false, null)
+    fun dump(text: String, client_id: String) {
+        requestor.dump(text, client_id, MessageType.Agent, false, null)
     }
 
-    fun dump(text: String, clientId: String, dumpListener: DumpListener) {
-        requestor.dump(text, clientId, MessageType.Agent, false, dumpListener)
+    fun dump(text: String, client_id: String, dumpListener: DumpListener) {
+        requestor.dump(text, client_id, MessageType.Agent, false, dumpListener)
     }
 
-    fun dump(text: String, clientId: String, type: Int, dumpListener: DumpListener) {
-        requestor.dump(text, clientId, type, false, dumpListener)
+    fun dump(text: String, client_id: String, type: Int, dumpListener: DumpListener) {
+        requestor.dump(text, client_id, type, false, dumpListener)
     }
 
     fun feed(feedListener: FeedListener) {
@@ -46,8 +45,8 @@ class Agent(private val requestor: IRequest) {
     }
 
     // builder pattern
-    class Builder(context: Context, apiKey: String, agentId: String) {
-        var requestor: IRequest = Requestor(context, apiKey, agentId)
+    class Builder(context: Context, apiKey: String, agent_id: String) {
+        var requestor: IRequest = Requestor(context, apiKey, agent_id)
         fun build() = Agent(requestor)
     }
 }
