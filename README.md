@@ -35,7 +35,7 @@ allprojects {
 Add the dependency in the app’s build.gradle file;
 ```
 dependencies {
-	        implementation 'com.github.Jupita-io:Jupita-Agent-Android-Kotlin:0.1.1
+	        implementation 'com.github.Jupita-io:Jupita-Agent-Android-Kotlin:1.0.0
 	}
 ```
 
