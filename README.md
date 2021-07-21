@@ -7,7 +7,7 @@ Currently, the Android SDK fully supports the 3 APIs available for Jupita Agent.
 All API calls are made asynchronously, thus there are event listeners available to handle the API results.
 
 ## Overview
-Jupita Agent is an API product that provides deep learning powered analysis of conversational data, via many mediums, between an agent (any service provider or staff member/company representative) and a client/customer. Within the SDK documentation, `message_type` will simply refer to who is speaking/typing. `message_type` '0' = `agent`, and `message_type` '1' = `client`, although these labels are normally handled by the SDK.
+Jupita Agent is an API product that provides deep learning powered analysis of conversational data, via many mediums, between an agent and client. Within the SDK documentation, `message_type` will simply refer to who is speaking. `message_type` '0' = `agent`, and `message_type` '1' = `client`, although these labels are handled by the SDK.
 
 The required parameters for the APIs include setting `message_type`, along with assigning an `agent_id` + `client_id` to be passed - how this is structured or deployed is dependent on your systems/platforms architecture, therefore it is completely flexible and customisable. Please note when assigning the `agent_id` that no data will be available for that particular agent from any of the APIs until the agent has sent at least 1 utterance via the `dump` API. 
 
@@ -120,8 +120,8 @@ agent.feed(object : FeedListener {
 
 ## Error handling
 The SDK throws 2 errors:
-- JSONException which occurs if the user input is not json compatible. This can be incorrect usage of strings when passed on to the Agent methods.
-- IllegalArgumentException: this arises if the `message_type` set in the dump method is not 1 or 0, or the model name in rating method is not ‘JupitaV1’.
+JSONException which occurs if the user input is not json compatible. This can be incorrect usage of strings when passed on to the Agent methods.
+IllegalArgumentException: this arises if the `message_type` set in the dump method is not 1 or 0, or the model name in rating method is not ‘JupitaV1’.
 
 ## Error codes
 Error codes thrown are 401 when the token is incorrect and 400 when there is an attempt to dump gibberish content to the server, although the model does have an inbuilt gibberish detector.
@@ -139,7 +139,7 @@ val agent_id = "2"
 val agent = Agent.Builder(applicationContext, token, agent_id).build()
 ```
 
-The builder constructs with the context of the application, token, and the agentID. This is needed for building the volley request queue.
+The builder constructs with the context of the application, token, and the agent_id. This is needed for building the volley request queue.
 
 The built agent can now be used to call dump, rating and feed methods asynchronously.
 
