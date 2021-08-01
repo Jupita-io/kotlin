@@ -33,6 +33,7 @@ allprojects {
 
 ### Step 2
 Add the dependency in the app’s build.gradle file;
+
 ```
 dependencies {
 	        implementation 'com.github.Jupita-io:Jupita-Agent-Android-Kotlin:1.1.0'
