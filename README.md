@@ -120,8 +120,7 @@ fun dump(text: String, client_id: String, type: Int, dumpListener: DumpListener)
 fun dump(text: String, client_id: String, type: Int, isCall: Boolean, dumpListener: DumpListener)
 ```
 
-If the values of `type` and `isCall` are not provided by default the values are considered as `MessageType.Agent` and `false`.
-Thus `text` and the `client_id` are essential when creating a `dump` request.
-To avoid illegal argument error use `MessageType.Agent` or `MessageType.Client` for type.
+If the values of `type` and `isCall` are not provided by default the values are considered as `MessageType.Agent` and `false`. Thus `text` and the `client_id` are essential when creating a `dump` request. To avoid illegal argument error use `MessageType.Agent` or `MessageType.Client` for type.
+
 `DumpListener` is an interface which needs to be implemented to listen to results of the dump call.
 The onSuccess event returns the success message as well as the utterance rating as double.
