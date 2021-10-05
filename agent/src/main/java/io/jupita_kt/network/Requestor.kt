@@ -9,8 +9,6 @@ import io.jupita_kt.agent.Constants
 import io.jupita_kt.agent.MessageType
 import io.jupita_kt.agent.ModelName
 import io.jupita_kt.network.listeners.DumpListener
-import io.jupita_kt.network.listeners.FeedListener
-import io.jupita_kt.network.listeners.RatingListener
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.UnsupportedEncodingException
@@ -53,52 +51,6 @@ class Requestor(context: Context, private val apiKey: String, private val agent_
         ) {
             val errorResponse = createErrorResponse(it)
             dumpListener?.onError(errorResponse.statusCode, errorResponse.jsonResponse)
-        }
-
-        requestQueue.add(request)
-    }
-
-    override fun feed(feedListener: FeedListener?){
-        val jsonData = JSONObject(
-            mapOf(
-                "token" to apiKey,
-                "agent_id" to agent_id
-            )
-        )
-
-        val request = JsonObjectRequest(
-            Constants.feedEndpoint,
-            jsonData,
-            { it?.let { feedListener?.onSuccess(it) }}
-        ) {
-            val errorResponse = createErrorResponse(it)
-            feedListener?.onError(errorResponse.statusCode, errorResponse.jsonResponse)
-        }
-
-        requestQueue.add(request)
-
-    }
-
-    override fun rating(model: String, ratingListener: RatingListener?){
-        if (model != ModelName.JUPITAV1){
-            throw IllegalArgumentException("Only Jupita v1 is supported")
-        }
-
-        val jsonData = JSONObject(
-            mapOf(
-                "token" to apiKey,
-                "agent_id" to agent_id,
-                "model" to model
-            )
-        )
-
-        val request = JsonObjectRequest(
-            Constants.ratingEndpoint,
-            jsonData,
-            {ratingListener?.onSuccess(it.getDouble("rating"))}
-        ) {
-            val errorResponse = createErrorResponse(it)
-            ratingListener?.onError(errorResponse.statusCode, errorResponse.jsonResponse)
         }
 
         requestQueue.add(request)

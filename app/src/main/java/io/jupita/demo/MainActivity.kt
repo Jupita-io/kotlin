@@ -6,8 +6,6 @@ import android.util.Log
 import io.jupita_kt.agent.Agent
 import io.jupita_kt.agent.MessageType
 import io.jupita_kt.network.listeners.DumpListener
-import io.jupita_kt.network.listeners.FeedListener
-import io.jupita_kt.network.listeners.RatingListener
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
@@ -40,28 +38,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             )
-
-            Log.d(TAG, "Start Feed Request")
-            agent.feed(object : FeedListener {
-                override fun onSuccess(week: JSONObject) {
-                    Log.d(TAG, "onSuccess: week -> $week")
-                }
-
-                override fun onError(statusCode: String, response: JSONObject) {
-                    Log.d(TAG, "onError: message -> $response")
-                }
-            })
-
-            Log.d(TAG, "Start Rating Request")
-            agent.rating(object : RatingListener {
-                override fun onSuccess(rating: Double) {
-                    Log.d(TAG, "onSuccess: rating -> $rating")
-                }
-
-                override fun onError(statusCode: String, response: JSONObject) {
-                    Log.d(TAG, "onError: message -> $response")
-                }
-            })
         } catch (e: Exception){
             Log.e(TAG, "Error Occurred")
             e.printStackTrace()

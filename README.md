@@ -10,11 +10,9 @@ Jupita Agent is an API product that provides deep learning powered analysis of c
 The required parameters for the APIs include setting `message_type`, along with assigning an `agent_id` + `client_id` to be passed - how this is structured or deployed is dependent on your systems/platforms architecture, therefore it is completely flexible and customizable. Please note when assigning the `agent_id` that no data will be available for that particular agent from any of the APIs until the agent has sent at least 1 utterance via the `dump` API. 
 
 ## APIs
-There are 3 APIs within the Jupita Agent product – `dump` `rating` & `feed`:
+There are 1 API within the Jupita Agent product – `dump`:
 
 - `Dump` allows you to dump each communication utterance (required)
-- `Rating` allows you to retrieve the agents rating (optional)
-- `Feed` provides you with some basic ratings statistics (optional)
 
 ## Quickstart
 ### Step 1
@@ -88,35 +86,6 @@ agent.dump(
             )
 ```
 
-### Step 5
-Call the rating API;
-
-```
-agent.rating(object : RatingListener {
-    override fun onSuccess(rating: Double) {
-        Log.d(TAG, "onSuccess: rating -> $rating")
-    }
-
-    override fun onError(statusCode: String, response: JSONObject) {
-        Log.d(TAG, "onError: message -> $response")
-    }
-})
-```
-
-### Step 6
-Call the feed API;
-```
-agent.feed(object : FeedListener {
-    override fun onSuccess(week: JSONObject) {
-        Log.d(TAG, "onSuccess: week -> $week")
-    }
-
-    override fun onError(statusCode: String, response: JSONObject) {
-        Log.d(TAG, "onError: message -> $response")
-    }
-})
-```
-
 ## Error handling
 The SDK throws 2 errors:
 JSONException which occurs if the user input is not json compatible. This can be incorrect usage of strings when passed on to the Agent methods.
@@ -140,7 +109,7 @@ val agent = Agent.Builder(applicationContext, token, agent_id).build()
 
 The builder constructs with the context of the application, token, and the agent_id. This is needed for building the volley request queue.
 
-The built agent can now be used to call dump, rating and feed methods asynchronously.
+The built agent can now be used to call dump method asynchronously.
 
 ### `dump` method definitions
 
@@ -156,25 +125,3 @@ Thus `text` and the `client_id` are essential when creating a `dump` request.
 To avoid illegal argument error use `MessageType.Agent` or `MessageType.Client` for type.
 `DumpListener` is an interface which needs to be implemented to listen to results of the dump call.
 The onSuccess event returns the success message as well as the utterance rating as double.
-
-
-### `rating` method definitions
-```
-fun rating(ratingListener: RatingListener)
-fun rating(modelName: String, ratingListener: RatingListener)
-```
-
-The second rating definition is created for future use when there will be multiple models to choose from.
-At the moment only 1 model (JupitaV1) is supported. To avoid illegal argument error use `ModelName.JUPITAV1` for the modelName.
-RatingListener is an interface which needs to be implemented to listen to results of the rating call.
-The onSuccess event returns the rating as a double.
-
-
-### `feed` method definitions
-```
-fun feed(feedListener: FeedListener)
-```
-
-FeedListener is an interface which needs to be implemented to listen to results of the feed call.
-The onSuccess event returns the feed for the whole week as a JSONObject.
-
