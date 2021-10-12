@@ -42,7 +42,7 @@ Build Jupita - '2' has been used to represent the touchpoint_id;
 ```
 val token = "your-token"
 val touchpoint_id = "2"
-val touchpoint = Touchpoint.Builder(applicationContext, token, touchpoint_id).build()
+val touchpoint = Jupita.Builder(applicationContext, token, touchpoint_id).build()
 ```
 
 ### Step 4
@@ -89,7 +89,7 @@ touchpoint.dump(
 ## Error handling
 The SDK throws 2 errors:
 JSONException which occurs if the user input is not json compatible. This can be incorrect usage of strings when passed on to the Touchpoint methods.
-IllegalArgumentException: this arises if the `message_type` set in the dump method is not 1 or 0, or the model name in rating method is not ‘JupitaV1’.
+IllegalArgumentException: this arises if the `message_type` set in the dump method is not 1 or 0.
 
 ## Error codes
 Error codes thrown are 401 when the token is incorrect and 400 when there is an attempt to dump gibberish content to the server, although the model does have an inbuilt gibberish detector.
@@ -98,13 +98,12 @@ Error codes thrown are 401 when the token is incorrect and 400 when there is an 
 Use Step 1 and 2 so that the Jupita Android SDK is available within the scope of the project. Currently the Jupita Android SDK is dependent on volley 1.2.0 and takes the permission of the internet as soon as the SDK is added as a dependency.
 
 ## Classes
-The available product under the Android SDK is Jupita.
-The Jupita Kotlin version cannot be constructed directly using the public constructor. Use the Touchpoint.Builder class to build the product.
+The available product under the Android SDK is Jupita. The Jupita Kotlin version cannot be constructed directly using the public constructor. Use the Jupita.Builder class to build the product.
 
 ```
 val token = "your-token"
 val touchpoint_id = "2"
-val touchpoint = Touchpoint.Builder(applicationContext, token, touchpoint_id).build()
+val touchpoint = Jupita.Builder(applicationContext, token, touchpoint_id).build()
 ```
 
 The builder constructs with the context of the application, token, and the touchpoint_id. This is needed for building the volley request queue.
@@ -122,5 +121,4 @@ fun dump(text: String, input_id: String, type: Int, isCall: Boolean, dumpListene
 
 If the values of `type` and `isCall` are not provided by default the values are considered as `MessageType.Touchpoint` and `false`. Thus `text` and the `input_id` are essential when creating a `dump` request. To avoid illegal argument error use `MessageType.Touchpoint` or `MessageType.Input` for type.
 
-`DumpListener` is an interface which needs to be implemented to listen to results of the dump call.
-The onSuccess event returns the success message as well as the utterance rating as double.
+`DumpListener` is an interface which needs to be implemented to listen to results of the dump call. The onSuccess event returns the success message as well as the utterance rating as double.
