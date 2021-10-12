@@ -1,3 +1,3 @@
-include ':agent'
+include ':jupita'
 include ':app'
-rootProject.name = "JupitaAgentExample"
+rootProject.name = "JupitaExample"

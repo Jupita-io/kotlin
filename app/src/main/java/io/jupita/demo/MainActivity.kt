@@ -1,31 +1,33 @@
 package io.jupita.demo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import io.jupita_kt.agent.Agent
-import io.jupita_kt.agent.MessageType
+import androidx.appcompat.app.AppCompatActivity
+import io.jupita_kt.Jupita
+import io.jupita_kt.MessageType
 import io.jupita_kt.network.listeners.DumpListener
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
-    private val token = BuildConfig.JUPITA_API_KEY
+
     companion object {
         private val TAG = "JUPITA_DEMO"
     }
+
+    private val token = BuildConfig.JUPITA_API_KEY
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         try {
-            val agent = Agent.Builder(this, token, "demo").build()
+            val touchpoint = Jupita.Builder(this, token, "demo").build()
 
             Log.d(TAG, "Start Dump Request")
-            agent.dump(
+            touchpoint.dump(
                 "Hello",
                 "0",
-                MessageType.Agent,
+                MessageType.Touchpoint,
                 false,
                 object : DumpListener {
                     override fun onSuccess(msg: String, rating: Double) {
@@ -38,9 +40,10 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             )
-        } catch (e: Exception){
+        } catch (e: Exception) {
             Log.e(TAG, "Error Occurred")
             e.printStackTrace()
         }
     }
+
 }

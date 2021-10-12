@@ -1,4 +1,4 @@
-package io.jupita_kt.agent
+package io.jupita_kt
 
 object ModelName {
     val JUPITAV1 = "JupitaV1"

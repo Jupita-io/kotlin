@@ -1,4 +1,4 @@
-package io.jupita_kt.agent
+package io.jupita_kt
 
 object Constants {
     private const val url = "https://api.jupita.io/v1"

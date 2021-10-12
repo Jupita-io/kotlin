@@ -1,4 +1,4 @@
-package io.jupita_kt.agent
+package io.jupita_kt
 
 import org.junit.Test
 
