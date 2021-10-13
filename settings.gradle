@@ -1,0 +1,3 @@
+include ':jupita'
+include ':app'
+rootProject.name = "JupitaExample"
