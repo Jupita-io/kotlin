@@ -69,7 +69,7 @@ touchpoint.dump( "Hello",
 Similarly, call the dump API whenever input responds back to the same touchpoint by specifying the message and ID of the input;
 ```
 touchpoint.dump(
-                "Hello",
+                "Hi, how are you?",
                 "3",
                 MessageType.Input,
                 false,
@@ -84,26 +84,6 @@ touchpoint.dump(
                     }
                 }
             )
-```
-
-The parameter `isCall` is required and set to false within the SDK. This tells Jupita whether or not the utterance is from an audio call. When dumping an utterance from an audio call, set the `isCall` parameter to `true`;
-
-```
-touchpoint.dump( "Hi, how are you?",
-            "3",
-            MessageType.Touchpoint,
-            true,
-            object : DumpListener {
-                override fun onSuccess(msg: String, rating: Double) {
-                    Log.d(TAG, "onSuccess: message -> $msg")
-                    Log.d(TAG, "onSuccess: rating -> $rating")
-                }
-
-                override fun onError(statusCode: String, response: JSONObject) {
-                    Log.d(TAG, "onError: message -> $response")
-                }
-            }
-        )
 ```
 
 ## Error handling
@@ -138,6 +118,7 @@ fun dump(text: String, input_id: String, dumpListener: DumpListener)
 fun dump(text: String, input_id: String, type: Int, dumpListener: DumpListener)
 fun dump(text: String, input_id: String, type: Int, isCall: Boolean, dumpListener: DumpListener)
 ```
+The parameter `isCall` is required and set to false within the SDK. This tells Jupita whether or not the utterance is from an audio call. When dumping an utterance from an audio call, set the `isCall` parameter to `true`.
 
 If the values of `type` and `isCall` are not provided by default the values are considered as `MessageType.Touchpoint` and `false`. Thus `text` and the `input_id` are essential when creating a `dump` request. To avoid illegal argument error use `MessageType.Touchpoint` or `MessageType.Input` for type.
 
