@@ -2,6 +2,7 @@ package io.jupita_kt.network
 
 import android.content.Context
 import android.util.Log
+import com.android.volley.Request
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -44,6 +45,7 @@ class Requestor(context: Context, private val apiKey: String, private val touchp
         )
 
         val request = JsonObjectRequest(
+            Request.Method.POST,
             Constants.dumpEndpoint,
             jsonData,
             {
