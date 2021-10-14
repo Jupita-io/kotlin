@@ -5,7 +5,7 @@
 This SDK is developed for Android using Kotlin and utilizes Google’s Volley library to create the API calls required. This library will allow you to make the required `dump` API calls with Jupita. All API calls are made asynchronously, thus there are event listeners available to handle the API results.
 
 ## Overview
-Jupita is an API product that provides deep learning powered communications analytics. Within the SDK documentation, `message_type` will simply refer to who is speaking. `message_type` 0 = `touchpoint`, and `message_type` 1 = `input`, although these labels are handled by the SDK.
+Jupita is an API product that provides deep learning powered touchpoint analytics. Within the SDK documentation, `message_type` will simply refer to who is speaking. `message_type` 0 = `touchpoint`, and `message_type` 1 = `input`, although these labels are handled by the SDK.
 
 The required parameters for the APIs include setting `message_type`, along with assigning an `touchpoint_id` + `input_id` to be passed - how this is structured or deployed is completely flexible and customizable. Please note when assigning the `touchpoint_id` that no data will be available for that particular touchpoint until the touchpoint has sent at least 1 utterance via the `dump` API. 
 
@@ -46,7 +46,7 @@ val touchpoint = Jupita.Builder(applicationContext, token, touchpoint_id).build(
 ```
 
 ### Step 4
-Call the dump API as a message from Touchpoint by specifying the message and input_id – represented as '3' below;
+Call the dump API as a message from touchpoint by specifying the message and input_id – represented as '3' below;
 
 ```
 touchpoint.dump( "Hello",
@@ -88,14 +88,14 @@ touchpoint.dump(
 
 ## Error handling
 The SDK throws 2 errors:
-JSONException which occurs if the user input is not json compatible. This can be incorrect usage of strings when passed on to the Touchpoint methods.
+JSONException which occurs if the user input is not json compatible. This can be incorrect usage of strings when passed on to the Jupita methods.
 IllegalArgumentException: this arises if the `message_type` set in the dump method is not 1 or 0.
 
 ## Error codes
-Error codes thrown are 401 when the token is incorrect and 400 when there is an attempt to dump gibberish content to the server, although the model does have an inbuilt gibberish detector.
+Error codes thrown are 401 when the token is incorrect.
 
 ## Libraries
-Use Step 1 and 2 so that the Jupita Android SDK is available within the scope of the project. Currently the Jupita Android SDK is dependent on volley 1.2.0 and takes the permission of the internet as soon as the SDK is added as a dependency.
+Use Step 1 and 2 so that the Jupita Android SDK is available within the scope of the project. Currently the Jupita Android SDK is dependent on volley 1.2.0 and takes the permission of the web as soon as the SDK is added as a dependency.
 
 ## Classes
 The available product under the Android SDK is Jupita. The Jupita Kotlin version cannot be constructed directly using the public constructor. Use the Jupita.Builder class to build the product.
