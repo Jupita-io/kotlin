@@ -89,7 +89,7 @@ touchpoint.dump(
 The parameter `isCall` is required and set to false within the SDK. This tells Jupita whether or not the utterance is from an audio call. When dumping an utterance from an audio call, set the `isCall` parameter to `true`;
 
 ```
-touchpoint.dump( "Hello",
+touchpoint.dump( "Hi, how are you?",
             "3",
             MessageType.Touchpoint,
             true,
