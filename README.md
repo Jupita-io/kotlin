@@ -115,10 +115,10 @@ IllegalArgumentException: this arises if the `message_type` set in the dump meth
 Error codes thrown are 401 when the token is incorrect.
 
 ## Libraries
-Use Step 1 and 2 so that the Jupita Android SDK is available within the scope of the project. Currently the Jupita Android SDK is dependent on volley 1.2.0 and takes the permission of the web as soon as the SDK is added as a dependency.
+Use Step 1 and 2 so that the Jupita Kotlin SDK is available within the scope of the project. Currently the Jupita Kotlin SDK is dependent on volley 1.2.0 and takes the permission of the web as soon as the SDK is added as a dependency.
 
 ## Classes
-The available product under the Android SDK is Jupita. The Jupita Kotlin version cannot be constructed directly using the public constructor. Use the Jupita.Builder class to build the product.
+The available product under the Kotlin SDK is Jupita. The Jupita Kotlin version cannot be constructed directly using the public constructor. Use the Jupita.Builder class to build the product.
 
 ```
 val token = "your-token"
