@@ -86,6 +86,26 @@ touchpoint.dump(
             )
 ```
 
+The parameter `isCall` is required and set to false within the SDK. This tells Jupita whether or not the utterance is from an audio call. When dumping an utterance from an audio call, set the `isCall` parameter to `true`;
+
+```
+touchpoint.dump( "Hello",
+            "3",
+            MessageType.Touchpoint,
+            true,
+            object : DumpListener {
+                override fun onSuccess(msg: String, rating: Double) {
+                    Log.d(TAG, "onSuccess: message -> $msg")
+                    Log.d(TAG, "onSuccess: rating -> $rating")
+                }
+
+                override fun onError(statusCode: String, response: JSONObject) {
+                    Log.d(TAG, "onError: message -> $response")
+                }
+            }
+        )
+```
+
 ## Error handling
 The SDK throws 2 errors:
 JSONException which occurs if the user input is not json compatible. This can be incorrect usage of strings when passed on to the Jupita methods.
