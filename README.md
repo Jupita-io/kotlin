@@ -32,7 +32,7 @@ Add the dependency in the applications build.gradle file;
 
 ```
 dependencies {
-	        implementation 'com.github.Jupita-io:Jupita-Kotlin:1.1.0'
+	        implementation 'com.github.Jupita-io:kotlin:1.1.0'
 	}
 ```
 
