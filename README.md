@@ -142,3 +142,5 @@ fun dump(text: String, input_id: String, type: Int, isCall: Boolean, dumpListene
 If the values of `type` and `isCall` are not provided by default the values are considered as `MessageType.Touchpoint` and `false`. Thus `text` and the `input_id` are essential when creating a `dump` request. To avoid illegal argument error use `MessageType.Touchpoint` or `MessageType.Input` for type.
 
 `DumpListener` is an interface which needs to be implemented to listen to results of the dump call. The onSuccess event returns the success message as well as the utterance rating as double.
+
+If you require additional support just hit us up at support@jupita.io 
