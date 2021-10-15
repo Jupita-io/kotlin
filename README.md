@@ -100,7 +100,7 @@ Error codes thrown are 401 when the token is incorrect, otherwise Jupita returns
 
 
 ## Libraries
-Use Step 1 and 2 so that the Jupita Android SDK is available within the scope of the project. Currently the Jupita Android SDK is dependent on volley 1.2.1 and takes the permission of the web as soon as the SDK is added as a dependency.
+Use Step 1 and 2 so that the Jupita Kotlin SDK is available within the scope of the project. Currently the Jupita Kotlin SDK is dependent on volley 1.2.1 and takes the permission of the web as soon as the SDK is added as a dependency.
 
 
 ## Classes
