@@ -92,7 +92,7 @@ JSONException which occurs if the user input is not json compatible. This can be
 IllegalArgumentException: this arises if the `message_type` set in the dump method is not 1 or 0.
 
 ## Error codes
-Error codes thrown are 401 when the token is incorrect.
+Error codes thrown are 401 when the token is incorrect, otherwise Jupita returns error 400 with details.
 
 ## Libraries
 Use Step 1 and 2 so that the Jupita Android SDK is available within the scope of the project. Currently the Jupita Android SDK is dependent on volley 1.2.1 and takes the permission of the web as soon as the SDK is added as a dependency.
