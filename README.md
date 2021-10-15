@@ -37,7 +37,7 @@ dependencies {
 ```
 
 ### Step 3
-Build Jupita. Insert your touchpoint user ID. In the example below '2' represents the touchpoint_id;
+Build Jupita. Insert your API key as the token as well as a touchpoint user ID. In the example below '2' represents the touchpoint_id;
 
 ```
 val token = "your-token"
@@ -46,7 +46,7 @@ val touchpoint = Jupita.Builder(applicationContext, token, touchpoint_id).build(
 ```
 
 ### Step 4
-Dump the utterance from the touchpoint by calling the dump API as a message by specifying the message text and the ID of the input, represented in the example below as '3'. The parameter `isCall` is required and set to false by default. This tells Jupita if the utterance is from an audio call. When dumping an utterance from an audio call, set the `isCall` parameter to `true` otherwise set to false;
+Dump the utterance from a touchpoint by calling the dump API as a message by specifying the message text and the ID of the input, represented in the example below as '3'. The parameter `isCall` is required and set to false by default. This tells Jupita if the utterance is from an audio call. When dumping an utterance from an audio call, set the `isCall` parameter to `true` otherwise set to false;
 
 ```
 touchpoint.dump( "Hi, how are you?",
