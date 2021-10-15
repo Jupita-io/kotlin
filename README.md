@@ -123,7 +123,7 @@ fun dump(text: String, input_id: String, message_type: Int, dumpListener: DumpLi
 fun dump(text: String, input_id: String, message_type: Int, isCall: Boolean, dumpListener: DumpListener)
 ```
 
-If the values of `type` and `isCall` are not provided by default the values are considered as `Jupita.TOUCHPOINT` and `false`. Thus `text` and the `input_id` are essential when creating a `dump` request. To avoid illegal argument error use `Jupita.TOUCHPOINT` or `Jupita.INPUT` for type.
+If the values of `type` and `isCall` are not provided by default the values are considered as `Jupita.TOUCHPOINT` and `false`. Thus `text` and the `input_id` are essential when creating a `dump` request. To avoid illegal argument error use `Jupita.TOUCHPOINT` or `Jupita.INPUT` for `message_type`.
 
 `DumpListener` is an interface which needs to be implemented to listen to results of the dump call. The onSuccess event returns the success message as well as the utterance rating as double.
 
