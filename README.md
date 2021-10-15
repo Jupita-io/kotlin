@@ -5,7 +5,7 @@ This SDK is developed for Android using Kotlin and utilizes Google’s Volley li
 
 
 ## Overview
-Jupita is an API product that provides deep learning powered touchpoint analytics. Within the SDK documentation, `message_type` will simply refer to who is speaking. `message_type` 0 = `touchpoint`, and `message_type` 1 = `input`, although these labels are handled by the SDK.
+Jupita is an API product that provides deep learning powered touchpoint analytics. Within the SDK documentation, `message_type` will simply refer to who is speaking. `message_type` 0 = `TOUCHPOINT`, and `message_type` 1 = `INPUT`, although these labels are handled by the SDK.
 
 The required parameters for the APIs include setting `message_type`, along with assigning an `touchpoint_id` + `input_id` to be passed - how this is structured or deployed is completely flexible and customizable. Please note when assigning the `touchpoint_id` that no data will be available for that particular touchpoint until the touchpoint has sent at least 1 utterance via the `dump` API. 
 
@@ -54,7 +54,7 @@ The parameter `isCall` is required and set to false by default. This tells Jupit
 ```
 touchpoint.dump( "Hi, how are you?",
             "3",
-            MessageType.Touchpoint,
+            Jupita.TOUCHPOINT,
             false,
             object : DumpListener {
                 override fun onSuccess(msg: String, rating: Double) {
@@ -74,7 +74,7 @@ Similarly, call the dump API whenever dumping an utterance from an input by spec
 touchpoint.dump(
                 "Hi, good thanks!",
                 "3",
-                MessageType.Input,
+                Jupita.INPUT,
                 false,
                 object : DumpListener {
                     override fun onSuccess(msg: String, rating: Double) {
@@ -119,11 +119,11 @@ The builder constructs with the context of the application, token, and the touch
 ```
 fun dump(text: String, input_id: String)
 fun dump(text: String, input_id: String, dumpListener: DumpListener)
-fun dump(text: String, input_id: String, type: Int, dumpListener: DumpListener)
-fun dump(text: String, input_id: String, type: Int, isCall: Boolean, dumpListener: DumpListener)
+fun dump(text: String, input_id: String, message_type: Int, dumpListener: DumpListener)
+fun dump(text: String, input_id: String, message_type: Int, isCall: Boolean, dumpListener: DumpListener)
 ```
 
-If the values of `type` and `isCall` are not provided by default the values are considered as `MessageType.Touchpoint` and `false`. Thus `text` and the `input_id` are essential when creating a `dump` request. To avoid illegal argument error use `MessageType.Touchpoint` or `MessageType.Input` for type.
+If the values of `type` and `isCall` are not provided by default the values are considered as `Jupita.TOUCHPOINT` and `false`. Thus `text` and the `input_id` are essential when creating a `dump` request. To avoid illegal argument error use `Jupita.TOUCHPOINT` or `Jupita.INPUT` for type.
 
 `DumpListener` is an interface which needs to be implemented to listen to results of the dump call. The onSuccess event returns the success message as well as the utterance rating as double.
 

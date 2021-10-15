@@ -7,7 +7,7 @@ import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import io.jupita_kt.Constants
-import io.jupita_kt.MessageType
+import io.jupita_kt.Jupita
 import io.jupita_kt.network.listeners.DumpListener
 import org.json.JSONException
 import org.json.JSONObject
@@ -25,12 +25,12 @@ class Requestor(context: Context, private val apiKey: String, private val touchp
     override fun dump(
         text: String,
         input_id: String,
-        type: Int,
+        message_type: Int,
         isCall: Boolean,
         dumpListener: DumpListener?
     ) {
-        if (type !in arrayOf(MessageType.Touchpoint, MessageType.Input)) {
-            throw IllegalArgumentException("Use either `MessageType.Touchpoint` or `MessageType.Input` type")
+        if (message_type !in arrayOf(Jupita.TOUCHPOINT, Jupita.INPUT)) {
+            throw IllegalArgumentException("Use either `Jupita.TOUCHPOINT` or `Jupita.INPUT` type")
         }
 
         val jsonData = JSONObject(
@@ -38,7 +38,7 @@ class Requestor(context: Context, private val apiKey: String, private val touchp
                 "token" to apiKey,
                 "touchpoint_id" to touchpoint_id,
                 "input_id" to input_id,
-                "message_type" to type,
+                "message_type" to message_type,
                 "text" to text,
                 "isCall" to isCall
             )

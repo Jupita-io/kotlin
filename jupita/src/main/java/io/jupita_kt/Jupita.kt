@@ -7,26 +7,31 @@ import io.jupita_kt.network.listeners.DumpListener
 
 class Jupita(private val requestor: IRequest) {
 
+    companion object {
+        const val TOUCHPOINT = 0
+        const val INPUT = 1
+    }
+
     fun dump(
         text: String,
         input_id: String,
-        type: Int,
+        message_type: Int,
         isCall: Boolean,
         dumpListener: DumpListener
     ) {
-        requestor.dump(text, input_id, type, isCall, dumpListener)
+        requestor.dump(text, input_id, message_type, isCall, dumpListener)
     }
 
     fun dump(text: String, input_id: String) {
-        requestor.dump(text, input_id, MessageType.Touchpoint, false, null)
+        requestor.dump(text, input_id, TOUCHPOINT, false, null)
     }
 
     fun dump(text: String, input_id: String, dumpListener: DumpListener) {
-        requestor.dump(text, input_id, MessageType.Touchpoint, false, dumpListener)
+        requestor.dump(text, input_id, TOUCHPOINT, false, dumpListener)
     }
 
-    fun dump(text: String, input_id: String, type: Int, dumpListener: DumpListener) {
-        requestor.dump(text, input_id, type, false, dumpListener)
+    fun dump(text: String, input_id: String, message_type: Int, dumpListener: DumpListener) {
+        requestor.dump(text, input_id, message_type, false, dumpListener)
     }
 
     // builder pattern

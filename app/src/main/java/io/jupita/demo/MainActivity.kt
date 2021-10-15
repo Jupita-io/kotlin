@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import io.jupita_kt.Jupita
-import io.jupita_kt.MessageType
 import io.jupita_kt.network.listeners.DumpListener
 import org.json.JSONObject
 
@@ -27,7 +26,7 @@ class MainActivity : AppCompatActivity() {
             touchpoint.dump(
                 "Hello",
                 "0",
-                MessageType.Touchpoint,
+                Jupita.TOUCHPOINT,
                 false,
                 object : DumpListener {
                     override fun onSuccess(msg: String, rating: Double) {
