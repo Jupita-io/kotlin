@@ -114,7 +114,7 @@ val touchpoint = Jupita.Builder(applicationContext, token, touchpoint_id).build(
 
 The builder constructs with the context of the application, token, and the touchpoint_id. This is needed for building the volley request queue. The built touchpoint can now be used to call dump method asynchronously.
 
-### `dump` method definitions
+## `dump` method definitions
 
 ```
 fun dump(text: String, input_id: String)
