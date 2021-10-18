@@ -57,16 +57,16 @@ touchpoint.dump("Hi, how are you?",
                 Jupita.TOUCHPOINT,
                 false,
                 object : DumpListener {
-                override fun onSuccess(msg: String, rating: Double) {
-                    Log.d(TAG, "onSuccess: message -> $msg")
-                    Log.d(TAG, "onSuccess: rating -> $rating")
-                }
+                    override fun onSuccess(msg: String, rating: Double) {
+                        Log.d(TAG, "onSuccess: message -> $msg")
+                        Log.d(TAG, "onSuccess: rating -> $rating")
+                    }
 
                 override fun onError(statusCode: String, response: JSONObject) {
                     Log.d(TAG, "onError: message -> $response")
+                    }
                 }
-            }
-        )
+            )
 ```
 
 Similarly, call the dump API whenever dumping an utterance from an input by specifying the message text and ID of the input;
@@ -76,16 +76,16 @@ touchpoint.dump("Hi, good thanks!",
                 Jupita.INPUT,
                 false,
                 object : DumpListener {
-                override fun onSuccess(msg: String, rating: Double) {
-                    Log.d(TAG, "onSuccess: message -> $msg")
-                    Log.d(TAG, "onSuccess: rating -> $rating")
-                }
+                    override fun onSuccess(msg: String, rating: Double) {
+                        Log.d(TAG, "onSuccess: message -> $msg")
+                        Log.d(TAG, "onSuccess: rating -> $rating")
+                    }
 
                     override fun onError(statusCode: String, response: JSONObject) {
                         Log.d(TAG, "onError: message -> $response")
-                }
-             }
-         )
+                    }
+                 }
+             )
 ```
 
 ## Error handling
