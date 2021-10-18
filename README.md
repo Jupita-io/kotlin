@@ -92,7 +92,7 @@ touchpoint.dump(
 ## Error handling
 - `JSONException` which occurs if the user input is not JSON compatible. This can be incorrect usage of strings when passed on to the Jupita methods.
 - `IllegalArgumentException` which occurs if the `message_type` set in the dump method is not 1 or 0.
-- Error codes thrown are 401 when the token is incorrect, otherwise Jupita returns error 400 with details.
+- A 401 error code is thrown when the token is incorrect, otherwise Jupita returns error 400 with details.
 
 
 ## Libraries
