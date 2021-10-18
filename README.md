@@ -52,11 +52,11 @@ Dump an utterance from a touchpoint by calling the dump API as a message by spec
 The parameter `isCall` is required and set to false by default. This tells Jupita if the utterance is from an audio call. When dumping an utterance from an audio call, set the `isCall` parameter to `true` otherwise set to `false`;
 
 ```
-touchpoint.dump( "Hi, how are you?",
-            "3",
-            Jupita.TOUCHPOINT,
-            false,
-            object : DumpListener {
+touchpoint.dump("Hi, how are you?",
+                "3",
+                Jupita.TOUCHPOINT,
+                false,
+                object : DumpListener {
                 override fun onSuccess(msg: String, rating: Double) {
                     Log.d(TAG, "onSuccess: message -> $msg")
                     Log.d(TAG, "onSuccess: rating -> $rating")
@@ -76,16 +76,16 @@ touchpoint.dump("Hi, good thanks!",
                 Jupita.INPUT,
                 false,
                 object : DumpListener {
-                    override fun onSuccess(msg: String, rating: Double) {
-                        Log.d(TAG, "onSuccess: message -> $msg")
-                        Log.d(TAG, "onSuccess: rating -> $rating")
-                    }
+                override fun onSuccess(msg: String, rating: Double) {
+                    Log.d(TAG, "onSuccess: message -> $msg")
+                    Log.d(TAG, "onSuccess: rating -> $rating")
+                }
 
                     override fun onError(statusCode: String, response: JSONObject) {
                         Log.d(TAG, "onError: message -> $response")
-                    }
                 }
-            )
+             }
+         )
 ```
 
 ## Error handling
