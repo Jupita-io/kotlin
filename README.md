@@ -71,8 +71,7 @@ touchpoint.dump( "Hi, how are you?",
 
 Similarly, call the dump API whenever dumping an utterance from an input by specifying the message text and ID of the input;
 ```
-touchpoint.dump(
-                "Hi, good thanks!",
+touchpoint.dump("Hi, good thanks!",
                 "3",
                 Jupita.INPUT,
                 false,
