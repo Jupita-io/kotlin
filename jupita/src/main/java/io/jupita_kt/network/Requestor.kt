@@ -25,6 +25,7 @@ class Requestor(context: Context, private val apiKey: String, private val touchp
     override fun dump(
         text: String,
         input_id: String,
+        channel_type: String,
         message_type: Int,
         isCall: Boolean,
         dumpListener: DumpListener?
@@ -38,6 +39,7 @@ class Requestor(context: Context, private val apiKey: String, private val touchp
                 "token" to apiKey,
                 "touchpoint_id" to touchpoint_id,
                 "input_id" to input_id,
+                "channel_type" to channel_type,
                 "message_type" to message_type,
                 "text" to text,
                 "isCall" to isCall
