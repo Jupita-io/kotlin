@@ -15,23 +15,24 @@ class Jupita(private val requestor: IRequest) {
     fun dump(
         text: String,
         input_id: String,
+        channel_type: String,
         message_type: Int,
         isCall: Boolean,
         dumpListener: DumpListener
     ) {
-        requestor.dump(text, input_id, message_type, isCall, dumpListener)
+        requestor.dump(text, input_id, channel_type, message_type, isCall, dumpListener)
     }
 
-    fun dump(text: String, input_id: String) {
-        requestor.dump(text, input_id, TOUCHPOINT, false, null)
+    fun dump(text: String, input_id: String, channel_type: String) {
+        requestor.dump(text, input_id, channel_type, TOUCHPOINT, false, null)
     }
 
-    fun dump(text: String, input_id: String, dumpListener: DumpListener) {
-        requestor.dump(text, input_id, TOUCHPOINT, false, dumpListener)
+    fun dump(text: String, input_id: String, channel_type: String, dumpListener: DumpListener) {
+        requestor.dump(text, input_id, channel_type, TOUCHPOINT, false, dumpListener)
     }
 
-    fun dump(text: String, input_id: String, message_type: Int, dumpListener: DumpListener) {
-        requestor.dump(text, input_id, message_type, false, dumpListener)
+    fun dump(text: String, input_id: String, channel_type: String, message_type: Int, dumpListener: DumpListener) {
+        requestor.dump(text, input_id, channel_type, message_type, false, dumpListener)
     }
 
     // builder pattern
