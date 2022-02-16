@@ -9,7 +9,7 @@ Jupita is an API product that provides omnichannel communications analytics. Wit
 
 Within the dashboard UI touchpoints are referred to as 'channels', and inputs are referred to as 'customers'.
 
-The required parameters for the APIs include setting `message_type` along with assigning a `touchpoint_id` + `input_id` to be passed. Please note when assigning the `touchpoint_id` that no data will be available for that particular touchpoint until the touchpoint has sent at least 1 utterance via the `dump` API. 
+The required parameters for the APIs include setting `channel_type`, `message_type` along with assigning a `touchpoint_id` + `input_id` to be passed. Please note when assigning the `touchpoint_id` that no data will be available for that particular touchpoint until the touchpoint has sent at least 1 utterance via the `dump` API. 
 
 You may set any `TOUCHPOINT` or `INPUT` ID format within the confines of JSON. How this is structured or deployed is completely customisable, for example, you may wish to use full names for users from your database, or you may wish to apply sequencing numbers for `INPUT` users where the user is not known. 
 
@@ -44,7 +44,7 @@ dependencies {
 ```
 
 ### Step 3
-Build Jupita. Insert your API key as the token as well as a touchpoint user ID. In the example below '2' represents the touchpoint_id;
+Build Jupita. Insert your token & touchpoint ID. In the example below '2' represents the touchpoint_id;
 
 ```
 val token = "your-token"
@@ -55,11 +55,14 @@ val touchpoint = Jupita.Builder(applicationContext, token, touchpoint_id).build(
 ### Step 4
 Dump an utterance from a touchpoint by calling the dump API as a message by specifying the message text and the ID of the input, represented in the example below as '3'. 
 
+The parameter `channel_type` is required. This allows you to specify which channel you are deploying the SDK to. You may enter any name you wish in order to identify the channel type in the dashboard UI, e.g "Email", "Web chat", "Social media", "Phone", etc.
+
 The parameter `isCall` is required and set to false by default. This tells Jupita if the utterance is from an audio call. When dumping an utterance from an audio call, set the `isCall` parameter to `true` otherwise set to `false`;
 
 ```
 touchpoint.dump("Hi, how are you?",
                 "3",
+                "Web chat",
                 Jupita.TOUCHPOINT,
                 false,
                 object : DumpListener {
@@ -79,6 +82,7 @@ Similarly, call the dump API whenever dumping an utterance from an input by spec
 ```
 touchpoint.dump("Hi, good thanks!",
                 "3",
+                "Web chat",
                 Jupita.INPUT,
                 false,
                 object : DumpListener {
@@ -118,10 +122,10 @@ The builder constructs with the context of the application, token, and the touch
 ## `dump` method definitions
 
 ```
-fun dump(text: String, input_id: String)
-fun dump(text: String, input_id: String, dumpListener: DumpListener)
-fun dump(text: String, input_id: String, message_type: Int, dumpListener: DumpListener)
-fun dump(text: String, input_id: String, message_type: Int, isCall: Boolean, dumpListener: DumpListener)
+fun dump(text: String, input_id: String, channel_type: String)
+fun dump(text: String, input_id: String, channel_type: String, dumpListener: DumpListener)
+fun dump(text: String, input_id: String, channel_type: String, message_type: Int, dumpListener: DumpListener)
+fun dump(text: String, input_id: String, channel_type: String, message_type: Int, isCall: Boolean, dumpListener: DumpListener)
 ```
 
 If the values of `message_type` and `isCall` are not provided the values are considered as `Jupita.TOUCHPOINT` and `false` by default. Thus `text` and the `input_id` are essential when creating a `dump` request. To avoid illegal argument error use `Jupita.TOUCHPOINT` or `Jupita.INPUT` for `message_type`.
