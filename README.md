@@ -57,7 +57,7 @@ Dump an utterance from a touchpoint by calling the dump API as a message by spec
 
 The parameter `channel_type` is required. This allows you to specify which channel you are deploying the SDK to. You may enter any name you wish in order to identify the channel type in the dashboard UI, e.g "Email", "Web chat", "Social media", "Phone", etc.
 
-The parameter `isCall` is required and set to false by default. This tells Jupita if the utterance is from an audio call. When dumping an utterance from an audio call, set the `isCall` parameter to `true` otherwise set to `false`;
+The parameter `isCall` is also required and set to false by default. This tells Jupita if the utterance is from an audio call. When dumping an utterance from an audio call, set the `isCall` parameter to `true` otherwise set to `false`;
 
 ```
 touchpoint.dump("Hi, how are you?",
