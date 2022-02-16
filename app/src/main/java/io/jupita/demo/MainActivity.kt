@@ -22,10 +22,11 @@ class MainActivity : AppCompatActivity() {
         try {
             val touchpoint = Jupita.Builder(this, token, "demo").build()
 
-            Log.d(TAG, "Start Dump Request")
+            Log.d(TAG, "Demo API call")
             touchpoint.dump(
-                "Hello",
-                "0",
+                "Hi, how are you?",
+                "3",
+                "Web chat",
                 Jupita.TOUCHPOINT,
                 false,
                 object : DumpListener {
